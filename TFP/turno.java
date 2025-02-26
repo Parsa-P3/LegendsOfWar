@@ -16,13 +16,22 @@ public class turno {
 	
 	
 	//menu opciones de juego 
-	public void turnoQ(String  z ) {
+	public void turnoQ(String  z , boolean atacante) {
 		System.out.println("Elige uno de los opciones " + z +" :");
-		
-         	System.out.println("Atacar (1)");
-         	System.out.println("Curar (2)");
+		if(atacante) {
+			System.out.println("Mostrar tu heroe (1)");
+			System.out.println("Atacar (2)");
          	System.out.println("Usa pocion de efecto(3)");
-			System.out.println("Mostrar tu heroe (4)");
+
+		
+		}else {
+			System.out.println("Mostrar tu heroe (1)");
+			System.out.println("Atacar (2)");
+         	System.out.println("Usa pocion de efecto(3)");
+         	System.out.println("Curar (4)");
+
+		}
+         	
          
          
 		
@@ -206,6 +215,23 @@ public class turno {
 	           System.out.println("---> " + ( RecibirAtace.defensa - atacante.ataque));
 	           System.out.println("Daño bloqueado : ");
 	           System.out.println("---> " + ( RecibirAtace.defensa ));
+			   if (vidaActual < 1) {
+				System.out.println("  ____    ___   ____  \r\n" + //
+										" |  _ \\  |_ _| |  _ \\ \r\n" + //
+										" | |_) |  | |  | |_) |\r\n" + //
+										" |  _ < _ | | _|  __/ \r\n" + //
+										" |_| \\_(_)___(_)_|    \r\n" + //
+										"                      ");
+				System.out.println("");
+				System.out.println(RecibirAtace.nombreHeroe + " murio!");
+				System.out.println("");
+				System.out.println("  ____    ___   ____  \r\n" + //
+										" |  _ \\  |_ _| |  _ \\ \r\n" + //
+										" | |_) |  | |  | |_) |\r\n" + //
+										" |  _ < _ | | _|  __/ \r\n" + //
+										" |_| \\_(_)___(_)_|    \r\n" + //
+										"                      ");
+			   }
 	           System.out.println("");
 	           System.out.println("🛡️ ⚒️ 🛡️ ⚒️ 🛡️ ⚒️ 🛡️ ⚒️ 🛡️ ⚒️ 🛡️ ⚒️ 🛡️ ⚒️ 🛡️ ⚒️ 🛡️ ⚒️ 🛡️ ⚒️");
 	           System.out.println("🏹 🧙   FIN DEL TURNO PARA "+ nombreJugadorAt+"! 🏹 🧙");
@@ -309,8 +335,8 @@ public class turno {
 		System.out.println("| Cada jugador coloca a su héroe en una posición al inicio del juego.                                                                        |");
 		System.out.println("| Los mapas son individual para cada heroe                                                                                                   |");
 		System.out.println("| El ataque sólo es efectivo si el enemigo está en la posición atacad                                                                        |");
-		System.out.println("| Opción 4 no acabara el turno                                                                                                               |");
-		System.out.println("| Si el jugador tiene Heroe de ataque pero intenta a curar , su turno acabará !                                                              |");
+		System.out.println("|                                                                                                                                            |");
+		System.out.println("|                                                                                                                                            |");
 		System.out.println("|                                                                                                                                            |");
 		System.out.println("| 7. Valores de cada acción:                                                                                                                 |");
 		System.out.println("| Daño realizado: será el daño que tiene el atacante menos el armadura del héroe que va recibir el ataque.                                   |");
@@ -320,6 +346,7 @@ public class turno {
 		System.out.println("| Curación : Los héroes de defensa siempre pueden curarse y la cura tendrá el mismo valor de su armadura .                                   |");
 		System.out.println("|     ej: hero1 es de defensa y tiene 30 armadura , cuando cura curara 30+                                                                   |");
 		System.out.println("|                                                                                                                                            |");
+		System.out.println("|                                                                                                                                            |");
 		System.out.println("| 8. Fin del Juego:                                                                                                                          |");
 		System.out.println("| Un equipo gana cuando los dos jugadores del equipo contrario han sido derrotados.                                                          |");
 		System.out.println("| Si un equipo pierde a un jugador, el otro puede seguir luchando hasta que caiga o gane la partida.                                         |");
@@ -327,7 +354,7 @@ public class turno {
 		System.out.println("|____________________________________________________________________________________________________________________________________________|");
 	}
 	
-	
+
 
 	
 	

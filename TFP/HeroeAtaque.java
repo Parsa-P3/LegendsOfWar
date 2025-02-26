@@ -3,7 +3,7 @@ package TFP;
 public class HeroeAtaque extends Personaje{
 
     public HeroeAtaque(String nombreHeroe, Region region) {
-        super(nombreHeroe, 1000, 200, 25,3, region);
+        super(nombreHeroe, 1000, 2000, 25,3, region);
     }
 
     //metodo diyalogo para atacar ( heroes de ataque)
@@ -43,7 +43,7 @@ public class HeroeAtaque extends Personaje{
     // metodo curar (no disponible en este version para atacantes!) 
 	@Override
 	public int curar(Personaje Personaje1 , Personaje Personaje2) {
-		System.out.println("esta habilidad no esta disponible para heroes de ataque!");
+		System.out.println("esta habilidad no esta disponible para heroes de ataque por el momento!");
 		return 0;
 	}
 

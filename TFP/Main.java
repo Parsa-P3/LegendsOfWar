@@ -19,7 +19,7 @@ public class Main {
 		  System.out.println("Bienvenido jugadores!");
 		  System.out.println("");
 		  System.out.println("Empezar (1)");
-		  System.out.println("Manual de Juego (2)");
+		  System.out.println("Manual de Juego (2) Recomendado si es su primera vez !");
 		  System.out.println("Salir (3) ");
 		  // bucle de menu
 		  int ilk = sc.nextInt();
@@ -47,6 +47,12 @@ public class Main {
                         String nombreJugador2 = "";
                         String nombreJugador3 = "";
                         String nombreJugador4 = "";
+                        
+                        boolean atacante1 = true ;
+                        boolean atacante2 = true ;
+                        boolean atacante3 = true ;
+                        boolean atacante4 = true ;
+                        
                         // preguntar y asignar los nombres de los jugadores
                         for (int i = 0; i < 4; i++) {
                             System.out.println("Como te llamas Jugador " + (i+1) + " ?" );
@@ -77,12 +83,14 @@ public class Main {
                                 jugador1 = new HeroeAtaque("Yasuo" , Region1 );
                             }else {
                                 jugador1 = new HeroeDefensa("Lux" , Region1 );
+                                atacante1 = false;
                             }
                         }else {
                             if(HERO == 1) {
                                 jugador1 = new HeroeAtaque("Katarina" , Region2 );
                             }else {
                                 jugador1 = new HeroeDefensa("Darius" , Region2 );
+                                atacante1 = false;
                             }
                         }
                         // elegir region para heroe de jugador 2
@@ -97,12 +105,14 @@ public class Main {
                                 jugador2 = new HeroeAtaque("Yasuo" , Region1 );
                             }else {
                                 jugador2 = new HeroeDefensa("Lux" , Region1 );
+                                atacante2 = false;
                             }
                         }else {
                             if(HERO2 == 1) {
                                 jugador2 = new HeroeAtaque("Katarina" , Region2 );
                             }else {
                                 jugador2 = new HeroeDefensa("Darius" , Region2 );
+                                atacante2 = false;
                             }
                         }
                         // elegir region para heroe de jugador 3
@@ -117,12 +127,14 @@ public class Main {
                                 jugador3 = new HeroeAtaque("Yasuo" , Region1 );
                             }else {
                                 jugador3 = new HeroeDefensa("Lux" , Region1 );
+                                atacante3 = false;
                             }
                         }else {
                             if(HERO3 == 1) {
                                 jugador3 = new HeroeAtaque("Katarina" , Region2 );
                             }else {
                                 jugador3 = new HeroeDefensa("Darius" , Region2 );
+                                atacante3 = false;
                             }
                         }
                         // elegir region para heroe de jugador 4
@@ -137,12 +149,14 @@ public class Main {
                                 jugador4 = new HeroeAtaque("Yasuo" , Region1 );
                             }else {
                                 jugador4 = new HeroeDefensa("Lux" , Region1 );
+                                atacante4 = false;
                             }
                         }else {
                             if(HERO4 == 1) {
                                 jugador4 = new HeroeAtaque("Katarina" , Region2 );
                             }else {
                                 jugador4 = new HeroeDefensa("Darius" , Region2 );
+                                atacante4 = false;
                             }
                         }
                         turno1.mostrarHeroes(jugador1, jugador2, jugador3, jugador4, nombreJugador1, nombreJugador2, nombreJugador3, nombreJugador4);
@@ -187,13 +201,13 @@ public class Main {
                             
                             if(TurnoDeJugar == 1 ) {
                                 System.out.println("Turno para : " + nombreJugador1);
-                                turno1.turnoQ(nombreJugador1);
+                                turno1.turnoQ(nombreJugador1, atacante1);
                                 
                                 
                                 accion = sc.nextInt();
                                 switch (accion) {
 									// si queremos atacar
-                                    case 1:
+                                    case 2:
                                     {
                                         System.out.println("A quien quieres atacar " + nombreJugador1 + "?");
 										//mostramos los posibles ataques (si enemigo no esta vivo no sera un opcion!)
@@ -224,8 +238,12 @@ public class Main {
                                         break;
                                     }
 									// si queremos curar
-                                    case 2:
+                                    case 4:
                                     {
+                                    	if(atacante1) {
+                                    		System.out.println("Opcion no existe!");
+                                    		break;
+                                    	}else {
                                         System.out.println("A quien quieres curar " + nombreJugador1 + "?") ;
                                         turno1.posiblesAtaces(" ti mismo ", nombreJugador2, jugador1, jugador2);
                                         int aQuien = sc.nextInt();
@@ -236,7 +254,7 @@ public class Main {
                                             jugador1.curar(jugador1, jugador2);
                                             TurnoDeJugar = turno1.v111(jugador2, jugador3, jugador4, TurnoDeJugar);
                                         }
-                                        break;
+                                        break;}
                                     }
 									// si queremos usar un pot
                                     case 3:
@@ -258,10 +276,11 @@ public class Main {
                                         }
                                         break;
 									// si queremos mostrar el estado actual del heroe
-                                    case 4:
+                                    case 1:
                                         System.out.println(jugador1.toString());
                                         System.out.println("");
                                         break;
+                                    
 								    
                                     default:
                                         System.out.println("Opcion no existe!");
@@ -271,10 +290,10 @@ public class Main {
 							// mismo bucle para jugador 2
                             if(TurnoDeJugar == 2) {
                                 System.out.println("Turno para : " + nombreJugador2);
-                                turno1.turnoQ(nombreJugador2);
+                                turno1.turnoQ(nombreJugador2, atacante2);
                                 accion = sc.nextInt();
                                 switch (accion) {
-                                    case 1:
+                                    case 2:
                                     {
                                         System.out.println("A quien quieres atacar " + nombreJugador2 + "?");
                                         turno1.posiblesAtaces(nombreJugador3, nombreJugador4, jugador3, jugador4);
@@ -295,8 +314,12 @@ public class Main {
                                         }
                                         break;
                                     }
-                                    case 2:
+                                    case 4:
                                     {
+                                    	if(atacante2) {
+                                    		System.out.println("Opcion no existe!");
+                                    		break;
+                                    	}else {
                                         System.out.println("A quien quieres curar " + nombreJugador2 + "?") ;
                                         turno1.posiblesAtaces(" ti mismo ", nombreJugador1, jugador2, jugador1);
                                         int aQuien = sc.nextInt();
@@ -308,7 +331,7 @@ public class Main {
                                             jugador2.curar(jugador2, jugador1);
                                             TurnoDeJugar = turno1.v222(jugador3, jugador4, TurnoDeJugar);
                                         }
-                                        break;
+                                        break;}
                                     }
                                     case 3:
                                         if (jugador2.getPocion()>0) {
@@ -327,7 +350,7 @@ public class Main {
                                             System.out.println("");
                                         }
                                         break;
-                                    case 4:
+                                    case 1:
                                         System.out.println(jugador2.toString());
                                         System.out.println("");
                                         break;
@@ -339,10 +362,10 @@ public class Main {
                             }// mismo bucle para jugador 3  
 							if(TurnoDeJugar == 3 ) {
                                 System.out.println("Turno para : " + nombreJugador3);
-                                turno1.turnoQ(nombreJugador3);
+                                turno1.turnoQ(nombreJugador3, atacante3);
                                 accion = sc.nextInt();
                                 switch (accion) {
-                                    case 1:
+                                    case 2:
                                     {
                                         System.out.println("A quien quieres atacar " + nombreJugador3 + "?");
                                         turno1.posiblesAtaces(nombreJugador1, nombreJugador2, jugador1, jugador2);
@@ -364,8 +387,12 @@ public class Main {
                                         }
                                         break;
                                     }
-                                    case 2:
+                                    case 4:
                                     {
+                                    	if(atacante3) {
+                                    		System.out.println("Opcion no existe!");
+                                    		break;
+                                    	}else {
                                         System.out.println("A quien quieres curar " + nombreJugador3 + "?") ;
                                         turno1.posiblesAtaces(" ti mismo ", nombreJugador4, jugador4, jugador3);
                                         int aQuien = sc.nextInt();
@@ -377,7 +404,7 @@ public class Main {
                                             jugador3.curar(jugador3, jugador4);
                                             TurnoDeJugar = 	turno1.v333(jugador4, jugador1, jugador2, TurnoDeJugar);
                                         }
-                                        break;
+                                        break;}
                                     }
                                     case 3:
                                         if (jugador3.getPocion()>0) {
@@ -395,7 +422,7 @@ public class Main {
                                             System.out.println("");
                                         }
                                         break;
-                                    case 4:
+                                    case 1:
                                         System.out.println(jugador3.toString());
                                         break;
                                     default:
@@ -406,10 +433,10 @@ public class Main {
                             }// mismo bucle para jugador 4	 
 						     if((TurnoDeJugar == 4) ) {
                                 System.out.println("Turno para : " + nombreJugador4);
-                                turno1.turnoQ(nombreJugador4);
+                                turno1.turnoQ(nombreJugador4, atacante4);
                                 accion = sc.nextInt();
                                 switch (accion) {
-                                    case 1:
+                                    case 2:
                                     {
                                         System.out.println("A quien quieres atacar " + nombreJugador4 + "?");
                                         turno1.posiblesAtaces(nombreJugador1, nombreJugador2, jugador1, jugador2);
@@ -428,8 +455,12 @@ public class Main {
                                         }
                                         break;
                                     }
-                                    case 2:
+                                    case 4:
                                     {
+                                    	if(atacante4) {
+                                    		System.out.println("Opcion no existe!");
+                                    		break;
+                                    	}else {
                                         System.out.println("A quien quieres curar " + nombreJugador4 + "?") ;
                                         turno1.posiblesAtaces(" ti mismo ", nombreJugador3, jugador3, jugador4);
                                         int aQuien = sc.nextInt();
@@ -441,7 +472,7 @@ public class Main {
                                             jugador4.curar(jugador4, jugador3);
                                             TurnoDeJugar = turno1.v444(jugador1, jugador2, TurnoDeJugar);
                                         }
-                                        break;
+                                        break;}
                                     }
                                     case 3:
                                         if (jugador3.getPocion()>0) {
@@ -460,7 +491,7 @@ public class Main {
                                             System.out.println("");
                                         }
                                         break;
-                                    case 4:
+                                    case 1:
                                         System.out.println(jugador4.toString());
                                         break;
                                     default:
@@ -475,10 +506,30 @@ public class Main {
                         if(jugador1.getVida()+jugador2.getVida()> jugador3.getVida() + jugador4.getVida()) {
                             System.out.println("HA GANDO EL EQUIPO 1");
                             turno1.winner();
+                            System.out.println("");
+                            System.out.println("");
+                            System.out.println("Que quieres hacer ahora ? ");
+                            System.out.println("");
+                            System.out.println("Empezar (1)");
+                            System.out.println("Manual de Juego (2)");
+                            System.out.println("Salir (3) ");
+                            ilk = sc.nextInt();
+                           
+                            break;
                         }else {
                             System.out.println("HA GANADO EL EQUIPO 2");
                             turno1.winner();
+                            System.out.println("");
+                            System.out.println("");
+                            System.out.println("Que quieres hacer ahora ? ");
+                            System.out.println("");
+                            System.out.println("Empezar (1)");
+                            System.out.println("Manual de Juego (2)");
+                            System.out.println("Salir (3) ");
+                            ilk = sc.nextInt();
+                            break;
                         }
+                      
                     // mostrar informacion/Manual de juego    
                     case 2:
                         System.out.println("Area de informacion: ");
@@ -510,7 +561,8 @@ public class Main {
                         break;
                 }
 				//quedamos dentro de menu mientras usuario no quiere salir
-            } while (!(ilk ==3));
+               
+            } while (!(ilk ==3) );
 		  
 	}
 	}
@@ -519,7 +571,7 @@ public class Main {
 					
 
 
-
+// no sale de bbucle main
 
 
 
